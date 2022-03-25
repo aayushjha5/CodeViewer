@@ -1,38 +1,107 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.homePageWrapper{
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: #fff;
+  /* for wrapper to be in middle of the page */
+  height: 100vh 
 }
 
-.App-link {
-  color: #61dafb;
+.formWrapper{
+  background: #282a36;
+  /* add some padding  */
+  padding: 20px;
+  /* to make border of wrapper a little bit round */
+  border-radius: 10px;
+  width: 400px;
+  /* for making wrapper responsive */
+  max-width: 90%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer{
+  /* to keep footer fixed at bottom */
+  position: fixed;
+  bottom: 0;
+}
+
+footer a{
+  /* for giving color to footer link */
+  color: #E7870C;
+}
+
+footer a:hover {
+  color: #894900;
+}
+
+.inputGroup {
+  /* for items to be aligned */
+display: flex;
+/* flex direction should be column */
+flex-direction: column;
+}
+
+.mainLabel {
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.homepageLogo {
+  /* reduce logo size */
+  height: 80px;
+  margin-bottom: 30px;
+}
+
+.inputBox {
+  /* to increase the size of the box inside */
+padding: 10px;
+border-radius: 5px;
+outline: none;
+border: none;
+/* to give space beneath the box */
+margin-bottom: 14px;
+background: #eee;
+/* for text in the box */
+font-size: 16px;
+font-weight: bold;
+}
+
+.btn{
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.joinBtn {
+  background: #e7870c;
+  /* to make button size small */
+  width: 100px;
+  /* to move it to right */
+  margin-left: auto;
+}
+
+.joinBtn:hover {
+  /* change color on hovering over button */
+  background: #894900;
+}
+
+.createInfo {
+  /* first give margin 0 up and down and auto left and right to make it in center */
+  margin: 0 auto;
+  /* then give top margin  */
+  margin-top: 20px;
+}
+
+.createNewBtn {
+  color: #E7870C;
+  text-decoration: none;
+  border-bottom: 1px solid #E7870C;
+  transition: all 0.3s ease-in-out;
+}
+
+.createNewBtn:hover {
+  color: #894900;
+  border-color: #894900;
 }
