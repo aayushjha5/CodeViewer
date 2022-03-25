@@ -1,3 +1,5 @@
+/* home page css */
+
 .homePageWrapper{
   display: flex;
   align-items: center;
@@ -72,9 +74,10 @@ font-weight: bold;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  font-weight: bold;
 }
 
-.joinBtn {
+.joinBtn , .leaveBtn{
   background: #e7870c;
   /* to make button size small */
   width: 100px;
@@ -82,7 +85,7 @@ font-weight: bold;
   margin-left: auto;
 }
 
-.joinBtn:hover {
+.joinBtn:hover , .leaveBtn:hover{
   /* change color on hovering over button */
   background: #894900;
 }
@@ -104,4 +107,68 @@ font-weight: bold;
 .createNewBtn:hover {
   color: #894900;
   border-color: #894900;
+}
+
+/* Editor page css */
+/* 1. aside wrap */
+
+.mainWrap {
+  display: grid;
+  /* fixing left grid and giving remaining space to other */
+  grid-template-columns: 230px 1fr;
+}
+
+.aside {
+  background: #1c1e29;
+  padding: 16px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+ .asideInner {
+   /* for shifting buttons to bottom */
+  flex: 1;
+} 
+
+.clientsList {
+  display: flex;
+  align-items: center;
+  /* flex wrap is used so if 3rd client is added then it is added below  */
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.client {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.userName {
+  margin-top: 10px;
+}
+
+.logo{
+border-bottom: 1px solid #424242;
+padding-bottom: 10px;
+}
+
+.logoImage {
+  height: 60px;
+}
+
+.leaveBtn {
+  margin-top: 20px;
+width: 100%;
+}
+
+/* 2. editor wrap */
+/* codemirror is the class of wrapper */
+.CodeMirror {
+ min-height: calc(100vh - 20px);
+  font-size: 20px;
+  line-height: 1.6;
+  padding-top: 20px;
 }
