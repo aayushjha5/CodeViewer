@@ -2,7 +2,7 @@
 
 DEMO:
 
-<img src="https://github.com/aayushjha5/CodeViewer/blob/main/demo.gif"/>
+<img src="https://github.com/aayushjha5/CodeViewer/blob/main/workingdemo.gif"/>
 
 This application is deployed on Heroku. Please check it out 😄 [here](https://realtime-code-viewer.herokuapp.com/).
 
