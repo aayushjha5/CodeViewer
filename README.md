@@ -6,6 +6,10 @@ DEMO:
 
 😁 A much improved V2 is on the way 🎉
 
+# Description
+
+This is a ReactJS based online code sharing application. I have built this by following @codersgyan video on it. Feel free to subscribe to him. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
