@@ -1,3 +1,11 @@
+# Code Viewer Web App
+
+DEMO:
+
+<code><img src="https://github.com/aayushjha5/CodeViewer/blob/main/demo.gif"/></code>
+
+😁 A much improved V2 is on the way 🎉
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
