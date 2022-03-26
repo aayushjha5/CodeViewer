@@ -7,18 +7,23 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "codemirror": "^5.65.2",
+    "express": "^4.17.3",
     "react": "^17.0.2",
     "react-avatar": "^4.0.0",
     "react-dom": "^17.0.2",
     "react-hot-toast": "^2.2.0",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
+    "socket.io": "^4.4.1",
+    "socket.io-client": "^4.4.1",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "server:dev": "nodemon server.js",
+    "server:prod": "node server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -39,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
