@@ -8,7 +8,7 @@ DEMO:
 
 # Description
 
-This is a ReactJS based online code sharing application. I have built this by following @codersgyan video on it. Feel free to subscribe to him. 
+This is a ReactJS based online code sharing application. I have built this by following [codersgyan](https://github.com/codersgyan) video on it. Feel free to subscribe to him. 
 
 # Getting Started with Create React App
 
