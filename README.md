@@ -4,6 +4,8 @@ DEMO:
 
 <code><img src="https://github.com/aayushjha5/CodeViewer/blob/main/demo.gif"/></code>
 
+This application is deployed on Heroku. Please check it out 😄 [here](https://realtime-code-viewer.herokuapp.com/).
+
 😁 A much improved V2 is on the way 🎉
 
 # Description
