@@ -3,26 +3,93 @@ import ACTIONS from '../Actions';
 import Client from '../components/Client';
 import Editor from '../components/Editor';
 import { initSocket } from '../socket';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useNavigate, Navigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const EditorPage = () => {
-  const { roomId } = useParams();
-  const location = useLocation();
-  // will store the instance of socket  using useRef hook
   const socketRef = useRef(null);
+  const codeRef = useRef(null);
+  const location = useLocation();
+  const { roomId } = useParams();
+  // will store the instance of socket  using useRef hook
+  const reactNavigator = useNavigate();
+  const [clients, setClients] = useState([]);
+
+ async function copyText() {
+  try {
+    await navigator.clipboard.writeText(roomId);
+    toast.success("Room ID has been copied to your clipboard.");
+  } catch (err) {
+    toast.error("Could not copy the Room ID.");
+  }
+ }
+
+
+function leaveRoom(){
+  reactNavigator('/');
+}
+
   useEffect(() => {
     const init = async () => {
       // after runnig below function client will be connected to server
       socketRef.current = await initSocket();
+      //calling handleError function when connection is being error or failed
+      socketRef.current.on('connect_error', (err) => handleErrors(err));
+      socketRef.current.on('connect_failed', (err) => handleErrors(err));
+
+      //handleError function
+      function handleErrors(e) {
+        console.log('socket error', e);
+        toast.error('Socket connection failed, try again later.');
+        reactNavigator('/');
+
+      }
+
       //below statement is used for sending roomId and username
-       socketRef.current.emit(ACTIONS.JOIN, {
-         roomId, username: location.state?.username
-       });
-    }
-    init();
+      socketRef.current.emit(ACTIONS.JOIN, {
+        roomId,
+        username: location.state?.username,
+      });
+      //listening for joined event
+      socketRef.current.on(ACTIONS.JOINED, ({ clients, username, socketId }) => {
+        //if username of viewing user is used then dont notify
+        if (username !== location.state?.username) {
+          toast.success(`${username} joined the room.`);
+        }
+        //when we login then the whole client list will be shown
+        setClients(clients);
+        socketRef.current.emit(ACTIONS.SYNC_CODE, {
+          code: codeRef.current,
+          socketId,
+        });
+      });
+
+      //listening for disconnected event
+      socketRef.current.on(
+        ACTIONS.DISCONNECTED,
+         ({ socketId, username }) => {
+        toast.success(`${username} left the room.`);
+        //remove removed user name from list in the left and return the updated
+        setClients((prev) => {
+          return prev.filter(
+            (client) => client.socketId !== socketId);
+        }) ;
+      });
+    };
+     init();
+     //anything inside return of useEffect func is cleaning func
+      return () => {
+        socketRef.current.disconnect();
+        socketRef.current.off(ACTIONS.JOINED);
+        socketRef.current.off(ACTIONS.DISCONNECTED);
+    };
   }, []);
 
-  const [clients, setClients] = useState([{ socketId: 1, username: 'Aayush Jha' }, { socketId: 2, username: 'Satya R' }, { socketId: 3, username: 'Amitabh D' }]);
+
+  if (!location.state) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div className='mainWrap'>
       <div className="aside">
@@ -38,11 +105,15 @@ const EditorPage = () => {
               ))}
           </div>
         </div>
-        <button className='btn copyBtn'>Copy ROOM ID</button>
-        <button className='btn leaveBtn'>Leave </button>
+        <button className='btn copyBtn' onClick={copyText}>Copy ROOM ID</button>
+        <button className='btn leaveBtn' onClick={leaveRoom}>Leave </button>
       </div>
       <div className="editorWrap">
-        <Editor />
+        <Editor  socketRef={socketRef} roomId={roomId} onCodeChange={
+          (code) => {
+            codeRef.current = code;
+          }
+        }/>
       </div>
     </div>
   )
